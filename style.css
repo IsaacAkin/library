@@ -15,3 +15,20 @@
     flex-direction: column;
     text-align: center;
 }
+
+dialog {
+    margin: 0 auto;
+    align-self: center;
+    width: 20rem;
+    height: 30rem;
+}
+
+dialog::backdrop {
+    background-color: grey;
+    opacity: 0.3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}

@@ -24,13 +24,19 @@ addBookToLibrary('Domestic na Kanojo', 'Kei Sasuga', 12, true);
 addBookToLibrary('One Piece', 'Eiichiro Oda', 100, true);
 
 function displayBooks(library) {
-    library.forEach(book => {
+    for (const book of library) {
         let div = document.createElement('div');
+        div.classList.add('cards');
 
-        let title = book.title;
-        let author = book.author;
-        let pages = book.pages;
-        let hasRead = book.hasRead;
+        let title = document.createElement('p');
+        let author = document.createElement('p');
+        let pages = document.createElement('p');
+        let hasRead = document.createElement('p');
+
+        title.textContent = book.title;
+        author.textContent = book.author;
+        pages.textContent = book.pages;
+        book.hasRead == true ? hasRead.textContent = 'Read' : hasRead.textContent = 'Not Read'
 
         div.append(title);
         div.append(author);
@@ -38,7 +44,7 @@ function displayBooks(library) {
         div.append(hasRead);
 
         container.appendChild(div);
-    });
+    }
 }
 
 displayBooks(myLibrary);

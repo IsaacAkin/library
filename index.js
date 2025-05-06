@@ -36,23 +36,34 @@ function displayBooks(myLibrary) {
     for (const book of myLibrary) {
         let div = document.createElement('div');
         div.classList.add('cards');
+        div.dataset.id = book.id;
 
         let title = document.createElement('p');
         let author = document.createElement('p');
         let pages = document.createElement('p');
         let status = document.createElement('p');
+        let removeBook = document.createElement('button');
 
         title.textContent = book.title;
         author.textContent = book.author;
         pages.textContent = book.pages;
         status.textContent = book.status;
+        removeBook.textContent = 'Remove';
 
         div.append(title);
         div.append(author);
         div.append(pages);
         div.append(status);
+        div.append(removeBook);
 
         container.appendChild(div);
+
+        removeBook.addEventListener('click', () => {
+            let bookToRemove = myLibrary.findIndex(book => div.dataset.id === book.id);
+            myLibrary.splice(bookToRemove, 1);
+            container.textContent = '';
+            displayBooks(myLibrary);
+        });
     }
 }
 

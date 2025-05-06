@@ -23,6 +23,14 @@ function Book(title, author, pages, status) {
     this.status = status;
 }
 
+Book.prototype.changeStatus = function () {
+    if (this.status === 'Read') {
+        this.status = 'Not read';
+    } else {
+        this.status = 'Read';
+    }
+}
+
 function addBookToLibrary(title, author, pages, status) {
     const newBook = new Book(title, author, pages, status);
     myLibrary.push(newBook);
@@ -41,7 +49,7 @@ function displayBooks(myLibrary) {
         let title = document.createElement('p');
         let author = document.createElement('p');
         let pages = document.createElement('p');
-        let status = document.createElement('p');
+        let status = document.createElement('button');
         let removeBook = document.createElement('button');
 
         title.textContent = book.title;
@@ -63,6 +71,11 @@ function displayBooks(myLibrary) {
             myLibrary.splice(bookToRemove, 1);
             container.textContent = '';
             displayBooks(myLibrary);
+        });
+
+        status.addEventListener('click', () => {
+            book.changeStatus();
+            status.textContent = book.status;
         });
     }
 }

@@ -2,10 +2,16 @@ const myLibrary = [];
 
 const container = document.querySelector('.container');
 const dialog = document.querySelector('dialog');
-const newBook = document.querySelector('.new-book');
 const closeDialog = document.querySelector('.close-dialog');
+const newBook = document.querySelector('.new-book');
+const submitBtn = document.querySelector('.submit-btn');
 
-function Book(title, author, pages, hadRead) {
+const titleInput = document.querySelector('#title');
+const authorInput = document.querySelector('#author');
+const pagesInput = document.querySelector('#pages');
+const readStatus = document.querySelector('#status');
+
+function Book(title, author, pages, status) {
     if (!new.target) {
         throw Error("You can only call this object with the 'new' operator");
     }
@@ -14,40 +20,62 @@ function Book(title, author, pages, hadRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.hasRead = hadRead;
+    this.status = status;
 }
 
-function addBookToLibrary(title, author, pages, hasRead) {
-    const newBook = new Book(title, author, pages, hasRead);
+function addBookToLibrary(title, author, pages, status) {
+    const newBook = new Book(title, author, pages, status);
     myLibrary.push(newBook);
 }
 
-addBookToLibrary('Mushoku Tensei', 'Rifujin na Magonete', 20, true);
-addBookToLibrary('Domestic na Kanojo', 'Kei Sasuga', 12, true);
-addBookToLibrary('One Piece', 'Eiichiro Oda', 100, true);
+addBookToLibrary('Mushoku Tensei', 'Rifujin na Magonete', 20, 'Read');
+addBookToLibrary('Domestic na Kanojo', 'Kei Sasuga', 12, 'Read');
+addBookToLibrary('One Piece', 'Eiichiro Oda', 100, 'Read');
 
-function displayBooks(library) {
-    for (const book of library) {
+function displayBooks(myLibrary) {
+    for (const book of myLibrary) {
         let div = document.createElement('div');
         div.classList.add('cards');
 
         let title = document.createElement('p');
         let author = document.createElement('p');
         let pages = document.createElement('p');
-        let hasRead = document.createElement('p');
+        let status = document.createElement('p');
 
         title.textContent = book.title;
         author.textContent = book.author;
         pages.textContent = book.pages;
-        book.hasRead == true ? hasRead.textContent = 'Read' : hasRead.textContent = 'Not Read'
+        status.textContent = book.status;
 
         div.append(title);
         div.append(author);
         div.append(pages);
-        div.append(hasRead);
+        div.append(status);
 
         container.appendChild(div);
     }
+}
+
+function clearForm() {
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    readStatus.checked = false;
+}
+
+function storeFormInfo(title, author, pages, status) {
+    if (title === '' || author === '' || pages === '') {
+        return;
+    }
+
+    title = titleInput.value;
+    author = authorInput.value;
+    pages = pagesInput.value;
+    status = readStatus.checked ? 'Read' : 'Not read';
+
+    addBookToLibrary(title, author, pages, status);
+    container.textContent = '';
+    displayBooks(myLibrary);
 }
 
 function eventListeners() {
@@ -57,8 +85,17 @@ function eventListeners() {
 
     closeDialog.addEventListener('click', () => {
         dialog.close();
+        clearForm();
+    });
+
+    submitBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        storeFormInfo(titleInput, authorInput, pagesInput, readStatus);
+        dialog.close();
+        clearForm();
     });
 }
 
 displayBooks(myLibrary);
+eventListeners();
 eventListeners();

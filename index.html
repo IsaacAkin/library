@@ -12,20 +12,37 @@
     <div class="container"></div>
     <dialog>
       <form action="">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" autocomplete="off" />
+        <label for="title"><span aria-label="required">*</span>Title:</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          autocomplete="off"
+          required
+        />
 
-        <label for="author">Author:</label>
-        <input type="text" name="author" id="author" autocomplete="off" />
+        <label for="author"><span aria-label="required">*</span>Author:</label>
+        <input
+          type="text"
+          name="author"
+          id="author"
+          autocomplete="off"
+          required
+        />
 
-        <label for="pages">Number of Pages:</label>
-        <input type="number" name="pages" id="pages" min="0" />
+        <label for="pages"
+          ><span aria-label="required">*</span>Number of Pages:</label
+        >
+        <input type="number" name="pages" id="pages" min="0" required />
 
-        <button type="button">Read</button>
+        <label for="status">Have you read it?</label>
+        <input type="checkbox" name="status" id="status" />
 
-        <button type="button">Submit</button>
+        <div>
+          <button type="button" class="submit-btn">Submit</button>
+          <button type="button" class="close-dialog">Cancel</button>
+        </div>
       </form>
-      <button class="close-dialog">close</button>
     </dialog>
     <button type="button" class="new-book">New book</button>
   </body>

@@ -98,4 +98,3 @@ function eventListeners() {
 
 displayBooks(myLibrary);
 eventListeners();
-eventListeners();

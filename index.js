@@ -87,16 +87,16 @@ function displayBooks(myLibrary) {
 
 // form reset
 function clearForm() {
-    titleInput.value = '';
-    authorInput.value = '';
-    pagesInput.value = '';
+    titleInput.value = null;
+    authorInput.value = null;
+    pagesInput.value = null;
     readStatus.checked = false;
 }
 
 function storeFormInfo(title, author, pages, status) {
     title = titleInput.value;
     author = authorInput.value;
-    pages = pagesInput.value;
+    pages = parseInt(pagesInput.value);
     status = readStatus.checked ? 'Read' : 'Not read';
 
     // doesn't add a book if any of these requiremnts aren't met

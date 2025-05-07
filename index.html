@@ -8,42 +8,65 @@
     <title>Library</title>
   </head>
   <body>
-    <h1>Library</h1>
+    <div class="header-container">
+      <h1>Library</h1>
+    </div>
+    <div>
+      <button type="button" class="add-book">Add book</button>
+    </div>
     <div class="container"></div>
     <dialog>
       <form action="">
-        <label for="title"><span aria-label="required">*</span>Title:</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          autocomplete="off"
-          required
-        />
+        <div class="title-container">
+          <label for="title"><span aria-label="required">*</span>Title:</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            autocomplete="off"
+            placeholder="Butter"
+            required
+          />
+        </div>
 
-        <label for="author"><span aria-label="required">*</span>Author:</label>
-        <input
-          type="text"
-          name="author"
-          id="author"
-          autocomplete="off"
-          required
-        />
+        <div class="author-container">
+          <label for="author"
+            ><span aria-label="required">*</span>Author:</label
+          >
+          <input
+            type="text"
+            name="author"
+            id="author"
+            autocomplete="off"
+            placeholder="Asako Yuzuki"
+            required
+          />
+        </div>
 
-        <label for="pages"
-          ><span aria-label="required">*</span>Number of Pages:</label
-        >
-        <input type="number" name="pages" id="pages" min="0" required />
+        <div class="pages-container">
+          <label for="pages"
+            ><span aria-label="required">*</span>Number of Pages:</label
+          >
+          <input
+            type="number"
+            name="pages"
+            id="pages"
+            min="0"
+            placeholder="452"
+            required
+          />
+        </div>
 
-        <label for="status">Have you read it?</label>
-        <input type="checkbox" name="status" id="status" />
+        <div class="status-container">
+          <label for="status">Have you read it?</label>
+          <input type="checkbox" name="status" id="status" />
+        </div>
 
-        <div>
+        <div class="button-container">
           <button type="button" class="submit-btn">Submit</button>
           <button type="button" class="close-dialog">Cancel</button>
         </div>
       </form>
     </dialog>
-    <button type="button" class="new-book">New book</button>
   </body>
 </html>

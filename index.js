@@ -14,25 +14,21 @@ const pagesInput = document.querySelector('#pages');
 const readStatus = document.querySelector('#status');
 
 // Constructor for making Book objects
-function Book(title, author, pages, status) {
-    // throws error if the constructor is created without the new operator
-    if (!new.target) {
-        throw Error("You can only call this object with the 'new' operator");
+class Book {
+    constructor(title, author, pages, status) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
     }
 
-    this.id = crypto.randomUUID(); // generates a random ID
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-}
-
-// Prototype function for changing the book status
-Book.prototype.changeStatus = function () {
-    if (this.status === 'Read') {
-        this.status = 'Not read';
-    } else {
-        this.status = 'Read';
+    changeStatus() {
+        if (this.status === 'Read') {
+            this.status = 'Not read';
+        } else {
+            this.status = 'Read';
+        }    
     }
 }
 
